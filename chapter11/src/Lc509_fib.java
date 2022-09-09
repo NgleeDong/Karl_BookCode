@@ -8,7 +8,7 @@ public class Lc509_fib {
         if (n < 2) return n;
         return fib1(n - 1) + fib1(n - 2);
     }
-    //方法二：动态规划 执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户 时间复杂度：O(n) 空间：O(n)
+    //方法二：记忆化搜索，即自顶向下的动态规划 执行用时：0 ms, 在所有 Java 提交中击败了100.00%的用户 时间复杂度：O(n) 空间：O(n)
     public int fib(int n) {
         if (n < 2) return n;
         int[] dp = new int[n + 1];
