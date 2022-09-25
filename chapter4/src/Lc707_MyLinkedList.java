@@ -21,7 +21,7 @@ public class Lc707_MyLinkedList {
 
     //get(index)：获取链表中第 index 个节点的值。如果索引无效，则返回-1。
     public int get(int index) {
-        if (index < 0 || index > size - 1) {
+        if (index < 0 || index >= size) {
             return -1;
         }
         ListNode cur = dummyNode.next;//指向index为0的节点
