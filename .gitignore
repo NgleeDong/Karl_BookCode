@@ -1,1 +1,14 @@
-/out
+*.class
+*.log
+*.ctxt
+.mtj.tmp/
+
+*.jar
+*.war
+
+.classpath
+.project
+.settings
+target
+.idea
+*.iml
