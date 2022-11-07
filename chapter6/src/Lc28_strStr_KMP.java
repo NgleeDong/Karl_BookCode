@@ -9,6 +9,15 @@ public class Lc28_strStr_KMP {
      * 对于本题而言，当needle是空字符串时我们应当返回 0 。这与 C 语言的strstr()以及 Java 的indexOf()定义相符。
      *
      */
+
+    /**
+     * 暴力解法：尝试每一个字符开头，能否匹配出str2
+     * 最差情况：
+     * str1：11111111111111111111111112
+     * str2：1112
+     * 每次匹配到str2最后才能确定某个位置开头不一样
+     * O(m * n)的复杂度
+     */
     public static int strStr(String haystack, String needle) {
         if (haystack == null || needle == null || needle.length() < 1) {
             return 0;
@@ -48,19 +57,22 @@ public class Lc28_strStr_KMP {
         }
         char[] ss = s.toCharArray();
         char[] ms = m.toCharArray();
-        int[] next = getNextArray(ms);
+        int[] next = getNextArray(ms);//O(M) 关于str2的next数组
         int si = 0;
         int mi = 0;
+        //O(N)
         while (si < ss.length && mi < ms.length) { //均未越界的情况下
             if (ss[si] == ms[mi]) {
                 si++;
                 mi++;
-            } else if (next[mi] == -1) {
-                si++;
-            } else {
-                mi = next[mi];
+            } else if (next[mi] == -1) { //也可以写成 mi == 0, 即mi没有办法再往前跳了
+                si++; //str1换个开头吧
+            } else { // mi 没到0位置，可以往前跳
+                mi = next[mi]; //si不动， mi跳到前缀的下一个位置
             }
         }
+        // si越界 或者 mi越界
+        // mi越界 代表某个数开头配出了str2
         return mi == ms.length ? si - mi : -1;
     }
 
